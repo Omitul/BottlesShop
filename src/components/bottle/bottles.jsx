@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Bottle } from "./bottle";
 import '../../components/components.css';
 import { addToLS,getStoredCart,RmvToLS} from '../../utilities/localStorage';
-import { Cart } from '../cart';
+import { Cart } from '../cart/cart';
 
 export default function Bottles() {
   const [bottles, setBottles] = useState([]);
@@ -15,7 +15,7 @@ export default function Bottles() {
   }, []);
 
   useEffect(() =>{
-    if(bottles.length > 0) {
+    if(bottles.length) {
     const storedCart = getStoredCart();
      
     const savedCart = [];
@@ -26,6 +26,7 @@ export default function Bottles() {
            savedCart.push(botol);
       }
      }
+     
      setCart(savedCart);
     }
     
@@ -37,11 +38,10 @@ export default function Bottles() {
 
     const newCart = [...cart,bottles];
     setCart(newCart);
-
-    addToLS(bottles);
+    addToLS(bottles.id);
   }
    const handleRmvFromCart = id => {
-     const cart = getStoredCart();
+    /// const cart = getStoredCart(); the mistake
      const baki = cart.filter(btl => btl.id !== id);
 
      setCart(baki);

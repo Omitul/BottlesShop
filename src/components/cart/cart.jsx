@@ -16,4 +16,6 @@ export const Cart = ({cart,handleRmvFromCart}) => {
         
     </div>
   )
+
+  
 }

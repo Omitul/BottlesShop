@@ -17,9 +17,9 @@ const saveCart = cart => {
 }
 
 
-const addToLS = id => {
+const addToLS = btl => {
     const cart = getStoredCart();
-    cart.push(id);
+    cart.push(btl);
     saveCart(cart);
 }
 const RmvToLS = id => {

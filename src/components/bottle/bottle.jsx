@@ -7,7 +7,7 @@ export const Bottle = (props) => {
       <h3>Bottle: {name}</h3>
       <img src={img} alt="" />
       <p>Price: ${price}</p>
-      <button onClick={()=> props.handleAddToCart(props.bottle.id)}  style={{backgroundColor:'skyblue'}}>Purchase</button>
+      <button onClick={()=> props.handleAddToCart(props.bottle)}  style={{backgroundColor:'skyblue'}}>Purchase</button>
     </div>
   )
 };
