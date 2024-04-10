@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Bottle } from "./bottle";
 import '../../components/components.css';
-import { addToLS,getStoredCart} from '../../utilities/localStorage';
+import { addToLS,getStoredCart,RmvToLS} from '../../utilities/localStorage';
+import { Cart } from '../cart';
 
 export default function Bottles() {
   const [bottles, setBottles] = useState([]);
@@ -33,18 +34,35 @@ export default function Bottles() {
    
 
   const handleAddToCart = bottles => {
-    console.log(bottles);
 
     const newCart = [...cart,bottles];
     setCart(newCart);
 
     addToLS(bottles);
   }
+   const handleRmvFromCart = id => {
+     const cart = getStoredCart();
+     const baki = cart.filter(btl => btl.id !== id);
+
+     setCart(baki);
+     RmvToLS(id);
+  }
+  
+  // const handleRemoveToCart = bottles => {
+  //       const setRmv = [];
+  //       for(btl of bottles) {
+  //          const botol = bottles.find(btl => btl.id != id);
+  //          if(botol) {
+  //           setRmv.push(botol);
+  //          }
+  //       }
+  //     setCart(setRmv);
+  // }
 
   return (
     <div>
+      <Cart cart={cart}  handleRmvFromCart = {handleRmvFromCart}></Cart>
       <h3 style={{border:'3px solid yellow',borderWidth:'50px',width:'400px'}}>Bottles: {bottles.length}</h3>
-      <h3 style={{border:'3px solid yellow',borderWidth:'50px',width:'400px'}}>Cart: {cart.length}</h3>
       <div className='components_container'>
       {
       bottles.map(b => (

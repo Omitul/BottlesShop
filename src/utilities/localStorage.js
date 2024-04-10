@@ -22,5 +22,10 @@ const addToLS = id => {
     cart.push(id);
     saveCart(cart);
 }
+const RmvToLS = id => {
+    const cart = getStoredCart();
+    const remaining = cart.filter(idx => idx !== id);
+    saveCart(remaining);
+}
 
-export {addToLS,getStoredCart};
+export {addToLS,getStoredCart, RmvToLS};
